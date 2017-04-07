@@ -28,7 +28,9 @@ The goals / steps of this project are the following:
 [image8]: ./examples/image6.jpg "image"
 [image9]: ./examples/image7.jpg "image"
 [image10]: ./examples/image8.jpg "image"
-[video1]: ./project_video.mp4 "Video"
+[image11]: ./examples/curve.jpg "image"
+[image12]: ./examples/final_image.jpg "final_image"
+[video1]: ./project_video_output1.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
@@ -119,13 +121,15 @@ After that i was fallowing instruction from Udacity Lectures video: Finding the 
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+Calculation of radius was done in cell 25 in function `measuring_curvature()`
 
-####6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
+![alt text][image11]
+
+#### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
 I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
 
-![alt text][image6]
+![alt text][image12]
 
 ---
 
