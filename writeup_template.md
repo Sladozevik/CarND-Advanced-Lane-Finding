@@ -25,6 +25,9 @@ The goals / steps of this project are the following:
 [image5]: ./examples/sobel_mag.jpg "Sobel Mag"
 [image6]: ./examples/sobel_mix.jpg "Sobel Mix"
 [image7]: ./examples/adding_color.jpg "adding_color"
+[image8]: ./examples/image6.jpg "image"
+[image9]: ./examples/image7.jpg "image"
+[image10]: ./examples/image8.jpg "image"
 [video1]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -108,9 +111,11 @@ Whole `pipeline()` function is cell 22.
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+After that i was fallowing instruction from Udacity Lectures video: Finding the Lines, Sliding Window Search. In cell 24 and 25 i have created functions `sliding_window()`, `polyfit_with_prev_fit()`, `draw_lane()` where i used Peaks in a Histogram to find lanes, after that i used sliding window search to extract whole line and finaly draw line on image. 
 
-![alt text][image5]
+![alt text][image8]
+![alt text][image9]
+![alt text][image10]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
