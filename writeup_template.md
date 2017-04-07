@@ -20,10 +20,11 @@ The goals / steps of this project are the following:
 
 [image1]: ./examples/undistort_output.png "Undistorted"
 [image2]: ./test_images/test1.jpg "Road Transformed"
-[image3]: ./examples/sobel_absolute.jpg "Sobel Abs"
-[image4]: ./examples/sobel_mag.jpg "Sobel Mag"
-[image5]: ./examples/sobel_mix.jpg "Sobel Mix"
-[image6]: ./examples/adding_color.jpg "adding_color"
+[image3]: ./examples/warped_straight_lines.jpg "warped_straight_lines"
+[image4]: ./examples/sobel_absolute.jpg "Sobel Abs"
+[image5]: ./examples/sobel_mag.jpg "Sobel Mag"
+[image6]: ./examples/sobel_mix.jpg "Sobel Mix"
+[image7]: ./examples/adding_color.jpg "adding_color"
 [video1]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -81,14 +82,14 @@ This resulted in the following source and destination points:
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
-![alt text][image4]
+![alt text][image3]
 
 ####3. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 I used a combination of color and gradient thresholds to generate a binary image from cell 8 to cell 21.  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
 
-![alt text][image3]
 ![alt text][image4]
 ![alt text][image5]
+![alt text][image6]
 
 And after adding color thresholds:
 '''
@@ -100,7 +101,7 @@ And after adding color thresholds:
     white_hsv_high = np.array([ 200,  30, 255])
 '''
 
-![alt text][image6]
+![alt text][image7]
 
 ####4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
