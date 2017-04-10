@@ -1,9 +1,4 @@
-##Writeup Template
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Advanced Lane Finding Project**
+# **Advanced Lane Finding Project**
 
 The goals / steps of this project are the following:
 
@@ -30,7 +25,8 @@ The goals / steps of this project are the following:
 [image10]: ./examples/image8.jpg "image"
 [image11]: ./examples/curve.jpg "image"
 [image12]: ./examples/final_image.jpg "final_image"
-[video1]: ./project_video_output1.mp4 "Video"
+[video1]: ./project_video_output1.mp4 "Video 1"
+[video2]: ./project_video_output_harder.mp4 "Video 2"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
@@ -64,16 +60,19 @@ To demonstrate this step, I will describe how I apply the distortion correction 
 The code for my perspective transform includes a function called `perspective_transform()` and `warped_images()`. The mentioned functions takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
 
 ```
-src = np.float32(
-    [[(img_size[0] / 2) - 55, img_size[1] / 2 + 100],
-    [((img_size[0] / 6) - 10), img_size[1]],
-    [(img_size[0] * 5 / 6) + 60, img_size[1]],
-    [(img_size[0] / 2 + 55), img_size[1] / 2 + 100]])
-dst = np.float32(
-    [[(img_size[0] / 4), 0],
-    [(img_size[0] / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), 0]])
+    data = {
+    "src": [[240, 720],
+            [575, 460],
+            [715, 460],
+            [1150, 720]],
+    "dst": [[440, 720],
+            [440, 0],
+            [950, 0],
+            [950, 720]],
+}
+
+src_points = np.float32(data['src'])
+dst_points = np.float32(data['dst'])
 
 ```
 This resulted in the following source and destination points:
@@ -90,7 +89,7 @@ I verified that my perspective transform was working as expected by drawing the 
 ![alt text][image3]
 
 #### 3. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
-I used a combination of color and gradient thresholds to generate a binary image from cell 8 to cell 21.  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
+I used a combination of color and gradient thresholds to generate a binary image from cell 8 to cell 21.  Here's an example of my output for this step.
 
 ![alt text][image4]
 ![alt text][image5]
@@ -113,7 +112,7 @@ Whole `pipeline()` function is cell 22.
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-After that i was fallowing instruction from Udacity Lectures video: Finding the Lines, Sliding Window Search. In cell 24 and 25 i have created functions `sliding_window()`, `polyfit_with_prev_fit()`, `draw_lane()` where i used Peaks in a Histogram to find lanes, after that i used sliding window search to extract whole line and finaly draw line on image. 
+After that i was fallowing instruction from Udacity Lectures video: Finding the Lines, Sliding Window Search. In cell 24 to 26 i have created functions `sliding_window()`, `polyfit_with_prev_fit()`, `draw_lane()` where i used Peaks in a Histogram to find lanes, after that i used sliding window search to extract whole line and finaly draw line on image. 
 
 ![alt text][image8]
 ![alt text][image9]
@@ -127,7 +126,7 @@ Calculation of radius was done in cell 25 in function `measuring_curvature()`
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+I implemented all steps metnioned above in cell 28.py.  Here is an example of my result on a test image:
 
 ![alt text][image12]
 
@@ -137,13 +136,19 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./project_video_output.mp4)
 
+Here's a link to harder video challenge [link to my video result](./project_video_output_harder.mp4)
 ---
 
 ### Discussion
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+Camera calibration and perspective transform steps I took are ok. Issue is that I hard coded source and destination points. This is not so big problem for normal chalenge video but essence of the problem can be seen in harder challenge video. I would definitly fix this first due source and destination points are initial step to make good measurments on image.
 
+During selection of Color / Gradient threshold there is many possibilities to make it look and work great but it is not always applicable to every situation. Example when car is driving and moving from dark surface to more white surface or shadows appear this can be issues for some of the Color and Gradient selection. That’s why in harder challenge video this issue pops up immediately. And I did not mention reflection on windshield.
+
+After playing with Color / Gradient threshold it was easy to build up image pipeline.
+
+Building histogram, sliding window fit and drawing data on image was hardest part. I was fallowing Udacity lectures and code and had difficulties to understand how to implement it. Code provided and Tips and Tricks for the Project from Udacity ware helpful in finalizing.
